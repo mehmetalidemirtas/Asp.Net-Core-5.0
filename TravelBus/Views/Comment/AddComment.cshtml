@@ -1,0 +1,32 @@
+﻿<div class="contact-form article-comment">
+    <h4>Leave a Reply</h4>
+    <form id="contact-form" method="post" action="/Comment/AddComment/">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input name="NameSurname" id="name" placeholder="Name Surname*" class="form-control" type="text">
+                </div>
+            </div>
+            @*<div class="col-md-6">
+                    <div class="form-group">
+                        <input name="Email" id="email" placeholder="Email *" class="form-control" type="email">
+                    </div>
+                </div>*@
+            <div class="col-md-6">
+                <div class="form-group">
+                    <input name="CommentTitle" id="name" placeholder="Comment Subject*" class="form-control" type="text">
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea name="CommentContent" id="message" placeholder="Your message*" rows="4" class="form-control"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div class="send">
+                    <button class="px-btn theme"><span>Submit</span> <i class="arrow"></i></button>
+                </div>
+            </div>
+        </div>
+    </form>
+</div>

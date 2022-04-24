@@ -1,0 +1,64 @@
+﻿@using X.PagedList
+@using X.PagedList.Mvc.Core
+@using X.PagedList.Web.Common;
+
+@model IPagedList<EntityLayer.Concrete.Place>
+@{
+    ViewData["Title"] = "ListAllPlaces";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/MaterialDesign-Webfont/5.3.45/css/materialdesignicons.css" integrity="sha256-NAxhqDvtY0l4xn+YVa6WjAcmd94NNfttjNsDmNatFVc=" crossorigin="anonymous" />
+<link href="~/css/BlogList.css" rel="stylesheet" />
+    <div class="page">
+        <!-- Breadcrumbs -->
+        <section class="breadcrumbs-custom-inset">
+            <div class="breadcrumbs-custom context-dark bg-overlay-60">
+                <div class="container">
+                    <h2 class="breadcrumbs-custom-title">About</h2>
+                    <ul class="breadcrumbs-custom-path">
+                        <li><a href="index.html">Home</a></li>
+                        <li class="active">About</li>
+                    </ul>
+                </div>
+                <div class="box-position" style="background-image: url(https://www.desktopbackground.org/download/o/2011/08/23/254359_ocean-views-wallpapers-wallpapers-cave_1920x1080_h.jpg);"></div>
+            </div>
+        </section>
+        <section class="section section-sm section-first bg-default section-md section-xl section-lg section-xs">
+            <div class="container">
+                <h3>Best Destinations</h3>
+                <div class="row row-30">
+                    <div class="row">
+                        @foreach (var x in Model)
+                        {
+                            <div class="col-lg-4 col-md-6 mt-4 pt-2">
+                                <div class="blog-post rounded border">
+                                    <div class="blog-img d-block overflow-hidden position-relative">
+                                        <img src="@x.LocationUrl" class="img-fluid rounded-top">
+                                        <div class="overlay rounded-top bg-dark"></div>
+                                        <div class="post-meta">
+                                            <a href="/Place/PlaceDetails/@x.PlaceID/" class="text-light read-more">Read More <i class="mdi mdi-chevron-right"></i></a>
+                                        </div>
+                                    </div>
+                                    <div class="content p-3">
+                                        <small class="text-muted p float-right">@(((DateTime)x.CreatedDate).ToString("dd-MMMM-yyyy"))</small>
+                                        <small><a href="javascript:void(0)" class="text-primary"></a></small>
+                                        <h4 class="mt-2"><a href="/Place/PlaceDetails/@x.PlaceID/" class="text-dark title">@x.PlaceName</a></h4>
+                                        <p class="text-muted mt-2">Explore the @x.PlaceName in @x.CityName...</p>
+                                    </div>
+                                </div><!--end blog post-->
+                            </div><!--end col-->
+                        }
+                    </div><!--end row-->
+                </div>
+            </div>
+            <br />
+            @Html.PagedListPager((IPagedList)Model, page => Url.Action("ListAllPlaces", new { page }), new PagedListRenderOptions
+                   {
+                            DisplayLinkToIndividualPages = true,
+                            DisplayPageCountAndCurrentLocation = true,
+                            LiElementClasses = new string[] { "page-item" },
+                       PageClasses = new string[] { "page-link" },
+
+    })
+        </section>
+    </div><!--end row-->

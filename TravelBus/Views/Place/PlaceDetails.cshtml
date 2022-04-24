@@ -1,0 +1,161 @@
+﻿@model IEnumerable<EntityLayer.Concrete.Place>
+@{
+    ViewData["Title"] = "PlaceDetails";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/css/PlaceDetails.css" rel="stylesheet" />
+<div class="blog-single gray-bg">
+    <div class="container">
+        <div class="row align-items-start">
+            <div class="col-lg-8 m-15px-tb">
+                @foreach (var x in Model)
+                {
+                    <article class="article">
+
+                        <div class="article-img">
+                            <img src="@x.LocationUrl" title="" alt="">
+                        </div>
+                        <div class="article-title">
+                            <h2>@x.PlaceName</h2>
+                            <h6 style="text-align:center">@x.CityName</h6>
+
+                            @*<div class="media">
+                        <div class="media-body">
+                            <label>Rachel Roth</label>
+                            <span>@x.CreatedDate</span>
+                        </div>
+                    </div>*@
+
+                        </div>
+                        @await Component.InvokeAsync("ContentsById", new { id = ViewBag.i })
+                    </article>
+                }
+                @await Component.InvokeAsync("Comment", new { id = ViewBag.i })
+                @await Html.PartialAsync("/Views/Comment/AddComment.cshtml")
+            </div>
+            <div class="col-lg-4 m-15px-tb blog-aside">
+                <!-- Author -->
+                <div class="widget widget-author">
+                    <div class="widget-title">
+                        <h3>Author</h3>
+                    </div>
+                    <div class="widget-body">
+                        <div class="media align-items-center">
+                            <div class="avatar">
+                                <img src="https://bootdey.com/img/Content/avatar/avatar6.png" title="" alt="">
+                            </div>
+                            <div class="media-body">
+                                <h6>Hello, I'm<br> Rachel Roth</h6>
+                            </div>
+                        </div>
+                        <p>I design and develop services for customers of all sizes, specializing in creating stylish, modern websites, web services and online stores</p>
+                    </div>
+                </div>
+                <!-- End Author -->
+                <!-- Location -->
+                <div class="widget widget-post">
+                    <div class="widget-title">
+                        <h3>Location</h3>
+                    </div>
+                    @foreach (var x in Model)
+                    {
+                        <div class="widget-body">
+                            <iframe src="@x.LocationUrl" width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+
+                        </div>
+                    }
+                </div>
+
+                <div class="widget widget-post">
+                    <div class="widget-title">
+                        <h3>Weather</h3>
+                    </div>
+                    @foreach (var x in Model)
+                    {
+                        <div class="widget-body">
+                            <div>
+                               <i class="fa fa-cloud fa-5x"></i>
+                            </div>
+                            <h4 class="font-bold">@x.CityName</h4>
+                            <br />
+                            <h6 class="font-bold">@ViewBag.weather 'C</h6>
+                        </div>
+                    }
+                </div>
+
+
+                <!-- End Location -->
+                <!-- Latest Post -->
+                <div class="widget widget-latest-post">
+                    <div class="widget-title">
+                        <h3>Latest Post</h3>
+                    </div>
+                    <div class="widget-body">
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body">
+                                <div class="lpa-title">
+                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                                </div>
+                                <div class="lpa-meta">
+                                    <a class="name" href="#">
+                                        Rachel Roth
+                                    </a>
+                                    <a class="date" href="#">
+                                        26 FEB 2020
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="lpa-right">
+                                <a href="#">
+                                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body">
+                                <div class="lpa-title">
+                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                                </div>
+                                <div class="lpa-meta">
+                                    <a class="name" href="#">
+                                        Rachel Roth
+                                    </a>
+                                    <a class="date" href="#">
+                                        26 FEB 2020
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="lpa-right">
+                                <a href="#">
+                                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
+                                </a>
+                            </div>
+                        </div>
+                        <div class="latest-post-aside media">
+                            <div class="lpa-left media-body">
+                                <div class="lpa-title">
+                                    <h5><a href="#">Prevent 75% of visitors from google analytics</a></h5>
+                                </div>
+                                <div class="lpa-meta">
+                                    <a class="name" href="#">
+                                        Rachel Roth
+                                    </a>
+                                    <a class="date" href="#">
+                                        26 FEB 2020
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="lpa-right">
+                                <a href="#">
+                                    <img src="https://via.placeholder.com/400x200/FFB6C1/000000" title="" alt="">
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <!-- End Latest Post -->
+            </div>
+        </div>
+    </div>
+</div>
+@await Component.InvokeAsync("ImagesInDetail", new { id = ViewBag.i })

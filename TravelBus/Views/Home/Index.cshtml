@@ -1,0 +1,11 @@
+﻿
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@await Component.InvokeAsync("Swipper")
+@await Component.InvokeAsync("CategoriesBox")
+@await Component.InvokeAsync("BestPlaces")
+@await Component.InvokeAsync("MeetTheTeam")
+@await Html.PartialAsync("Subscribe")
